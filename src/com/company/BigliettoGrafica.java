@@ -7,7 +7,7 @@ public class BigliettoGrafica {
     JPanel panel;
     JFrame biglietto;
     JLabel basics, id, posto, orario, programmazione;
-    JLabel immagine = new JLabel(new ImageIcon("teatroperg.png"));
+    JLabel immagine = new JLabel(new ImageIcon("resources/teatroperg.png"));
 
     public BigliettoGrafica() {
         panel = new JPanel();

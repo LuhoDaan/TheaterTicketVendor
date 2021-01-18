@@ -1,13 +1,19 @@
 package com.company;
+
 import java.util.Scanner;
 
-public class BiglietteriaOnline implements Biglietteria {
+public class BiglietteriaInLoco implements Biglietteria{
+    Double costiExtraOperatore ;
+
+    public BiglietteriaInLoco(Double costiOperatore){
+        setCostiExtraOperatore(costiOperatore);
+    }
 
 
-    //ho lasciato i metodi statici perchè al loro interno istanzio degli oggetti biglietteria
-    // se non erano statici avrei dovuto istanziare prima gli oggetti, poi chiamare il metodo buy
-    // dall'oggetto che avrebbe istanziato un altro oggetto,
-    //il succo di tutto è che avrei avuto due biglietterie per acquistare un biglietto ... NO SENSE
+    public void setCostiExtraOperatore(Double costiExtraOperatore) {
+        this.costiExtraOperatore = costiExtraOperatore;
+    }
+
     public static void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);
@@ -18,7 +24,9 @@ public class BiglietteriaOnline implements Biglietteria {
         int column = scanColumn.nextInt();
 
         //procedo all'acquisto vero e proprio
-        BiglietteriaOnline biglietteriax = new BiglietteriaOnline();//questo passaggio dove creo un'altra biglietteria non mi torna molto
+        BiglietteriaInLoco biglietteriax = new BiglietteriaInLoco(1.25);
+        //questo passaggio dove
+        // creo un'altra biglietteria non mi torna molto
 
         try {
             Double spesa = Teatro.getSeat(row, column).accept(biglietteriax);
@@ -76,6 +84,7 @@ public class BiglietteriaOnline implements Biglietteria {
     @Override
     public Double visit(Palco postoPalco) {
         Double price;
+
         Scanner myObj = new Scanner(System.in);
         System.out.println("Inserire il numero di mesi per i quali si vuole prenotare il palco: ");
         int mesi = myObj.nextInt();
@@ -83,7 +92,7 @@ public class BiglietteriaOnline implements Biglietteria {
             System.out.println("ATTENZIONE PRENOTAZIONE MINIMA 1 MESE");
             price = visit(postoPalco);
         } else {
-            price = postoPalco.returnPriceOfTheSeat() * mesi;
+            price = postoPalco.returnPriceOfTheSeat() * mesi*costiExtraOperatore;
         }
         return price;
     }
@@ -91,6 +100,6 @@ public class BiglietteriaOnline implements Biglietteria {
     @Override
     public Double visit(Platea postoPlatea) {
 
-        return postoPlatea.returnPriceOfTheSeat();
+        return postoPlatea.returnPriceOfTheSeat()*costiExtraOperatore;
     }
 }

@@ -22,10 +22,10 @@ public class Main {
             Teatro teatro = Teatro.getInstanceOf();
 
 
-            teatro.setProgrammazioneDellaSettimana("Le donne di Sandro");
-            teatro.setOrarioSpettacoli("9:30");
-            BiglietteriaOnline ticketOne = new BiglietteriaOnline();
-            ticketOne.buy();
+            teatro.setProgrammazioneDellaSettimana("Edu gay");
+            teatro.setOrarioSpettacoli("24:30");
+            BiglietteriaOnline.buy();
+            BiglietteriaInLoco.buy();
 
         } catch (TeatroNotInitialized e) {
             System.err.println("You have not initialized useful information for Teatro");
