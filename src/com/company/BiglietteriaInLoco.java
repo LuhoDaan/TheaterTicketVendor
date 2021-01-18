@@ -17,39 +17,44 @@ public class BiglietteriaInLoco implements Biglietteria{
     public static void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);
-        System.out.println("Selezionare la fila (0-11) :");
+        System.out.println("Selezionare la fila (0-10) :");
         int row = scanRow.nextInt();
         Scanner scanColumn = new Scanner(System.in);
-        System.out.println("Selezionare il posto (0-30) :");
+        System.out.println("Selezionare il posto (0-29) :");
         int column = scanColumn.nextInt();
 
         //procedo all'acquisto vero e proprio
         BiglietteriaInLoco biglietteriax = new BiglietteriaInLoco(1.25);
         //questo passaggio dove
         // creo un'altra biglietteria non mi torna molto
+        //NON SONO TANTO CONVINTO DEL SETTARE QUA DENTRO AL METODO I COSTIOPERATORE;
 
         try {
-            Double spesa = Teatro.getSeat(row, column).accept(biglietteriax);
+
 
             if (Teatro.getSeat(row, column).isSeatAvailable()) {
+
                 Teatro.getSeat(row, column).reserveSeat();
-            } else {
+
+                Double spesa = Teatro.getSeat(row, column).accept(biglietteriax);
+
+                RegularTicket bigliettoProvvisorio = new RegularTicket(spesa);
+                Ticket bigliettoEmesso = applicaSconto(bigliettoProvvisorio);
+
+                BigliettoGrafica graph = new BigliettoGrafica();
+                graph.setBasics(bigliettoEmesso);
+                graph.setId(Teatro.getSeat(row, column));
+                graph.setPosto(row, column);
+                graph.setOrario(Teatro.getInstanceOf().getOrarioSpettacoli());
+                graph.setProgrammazione(Teatro.getInstanceOf().getProgrammazioneDellaSettimana());
+                graph.showGui();
+
+
+            }
+            else {
                 System.out.println("Ci dispiace, ma il posto richiesto è già prenotato");
                 buy();
             }
-
-            RegularTicket bigliettoProvvisorio = new RegularTicket(spesa);
-            Ticket bigliettoEmesso = applicaSconto(bigliettoProvvisorio);
-
-            BigliettoGrafica graph = new BigliettoGrafica();
-            graph.setBasics(bigliettoEmesso);
-            graph.setId(Teatro.getSeat(row, column));
-            graph.setPosto(row, column);
-            graph.setOrario(Teatro.getInstanceOf().getOrarioSpettacoli());
-            graph.setProgrammazione(Teatro.getInstanceOf().getProgrammazioneDellaSettimana());
-            graph.showGui();
-
-
         }
         catch (ArrayIndexOutOfBoundsException ex){
             System.out.println("IL POSTO SELEZIONATO NON ESISTE, FARE ATTENZIONE" +
@@ -57,6 +62,8 @@ public class BiglietteriaInLoco implements Biglietteria{
             buy();
         }
     }
+
+
     public static Ticket applicaSconto(Ticket ticket) {
         Ticket newticket = ticket;
         Scanner scanSconto = new Scanner(System.in);
