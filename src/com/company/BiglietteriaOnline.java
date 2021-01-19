@@ -4,12 +4,7 @@ import java.util.Scanner;
 public class BiglietteriaOnline implements Biglietteria {
 
 
-    //ho lasciato i metodi statici perchè al loro interno istanzio degli oggetti biglietteria
-    // se non erano statici avrei dovuto istanziare prima gli oggetti, poi chiamare il metodo buy
-    // dall'oggetto che avrebbe istanziato un altro oggetto,
-    //il succo di tutto è che avrei avuto due biglietterie per acquistare un biglietto ... NO SENSE
 
-    //ma qua non viene gestito il throws ? cosa succede se il teatro non è inizializzato qua ?
     public void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);
@@ -19,11 +14,6 @@ public class BiglietteriaOnline implements Biglietteria {
         System.out.println("Selezionare il posto (0-29) :");
         int column = scanColumn.nextInt();
 
-        //procedo all'acquisto vero e proprio
-
-        //questo passaggio dove
-        // creo un'altra biglietteria non mi torna molto
-        //NON SONO TANTO CONVINTO DEL SETTARE QUA DENTRO AL METODO I COSTIOPERATORE;
 
         try {
 
@@ -58,6 +48,7 @@ public class BiglietteriaOnline implements Biglietteria {
             buy();
         }
     }
+
     public Ticket applicaSconto(Ticket ticket) {
         Ticket newticket = ticket;
         Scanner scanSconto = new Scanner(System.in);

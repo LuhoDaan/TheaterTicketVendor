@@ -15,8 +15,7 @@ public class BiglietteriaInLoco implements Biglietteria{
     }
 
 
-    //vorrei rendere il metodo non statico però non so come passare poi al suo interno
-     //l'istanza della classe che genera buy
+
     public  void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);
@@ -26,10 +25,6 @@ public class BiglietteriaInLoco implements Biglietteria{
         System.out.println("Selezionare il posto (0-29) :");
         int column = scanColumn.nextInt();
 
-        //procedo all'acquisto vero e proprio
-        //questo passaggio dove
-        // creo un'altra biglietteria non mi torna molto
-        //NON SONO TANTO CONVINTO DEL SETTARE QUA DENTRO AL METODO I COSTIOPERATORE;
 
         try {
 
