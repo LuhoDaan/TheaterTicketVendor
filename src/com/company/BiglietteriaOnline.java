@@ -9,6 +9,7 @@ public class BiglietteriaOnline implements Biglietteria {
     // dall'oggetto che avrebbe istanziato un altro oggetto,
     //il succo di tutto è che avrei avuto due biglietterie per acquistare un biglietto ... NO SENSE
 
+    //ma qua non viene gestito il throws ? cosa succede se il teatro non è inizializzato qua ?
     public static void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);

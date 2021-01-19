@@ -14,6 +14,9 @@ public class BiglietteriaInLoco implements Biglietteria{
         this.costiExtraOperatore = costiExtraOperatore;
     }
 
+
+    //vorrei rendere il metodo non statico però non so come passare poi al suo interno
+     //l'istanza della classe che genera buy
     public static void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);

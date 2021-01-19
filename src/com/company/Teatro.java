@@ -61,7 +61,7 @@ public class TeatroDellaPergola {
 package com.company;
 public class Teatro {
     private static Teatro instance;
-    private static Seat[][] seats; // perchè final? magari aggiungono sedie
+    private static Seat[][] seats;
     private static String name;
     private String programmazioneDellaSettimana;
     private String orarioSpettacoli;

@@ -22,8 +22,8 @@ public class Main {
             Teatro teatro = Teatro.getInstanceOf();
 
 
-            teatro.setProgrammazioneDellaSettimana("Edu gay");
-            teatro.setOrarioSpettacoli("24:30");
+            teatro.setProgrammazioneDellaSettimana("L'importanza di chiamarsi Ernest");
+            teatro.setOrarioSpettacoli("21:30");
             BiglietteriaOnline.buy();
             BiglietteriaInLoco.buy();
 
