@@ -119,15 +119,15 @@ public class Teatro {
 
 
 
-    public static Seat getSeat(int row, int column) {
+    public Seat getSeat(int row, int column) {
         return seats[row][column];
     }
 
-    public static Seat[][] getSeats() {
+    public Seat[][] getSeats() {
         return seats;
     }
 
-    public static String getName() {
+    public String getName() {
         return Teatro.name;
     }
 

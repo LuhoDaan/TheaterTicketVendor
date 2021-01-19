@@ -10,7 +10,7 @@ public class BiglietteriaOnline implements Biglietteria {
     //il succo di tutto è che avrei avuto due biglietterie per acquistare un biglietto ... NO SENSE
 
     //ma qua non viene gestito il throws ? cosa succede se il teatro non è inizializzato qua ?
-    public static void buy() throws TeatroNotInitialized {
+    public void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);
         System.out.println("Selezionare la fila (0-10) :");
@@ -20,7 +20,7 @@ public class BiglietteriaOnline implements Biglietteria {
         int column = scanColumn.nextInt();
 
         //procedo all'acquisto vero e proprio
-        BiglietteriaOnline biglietteriax = new BiglietteriaOnline();
+
         //questo passaggio dove
         // creo un'altra biglietteria non mi torna molto
         //NON SONO TANTO CONVINTO DEL SETTARE QUA DENTRO AL METODO I COSTIOPERATORE;
@@ -28,18 +28,18 @@ public class BiglietteriaOnline implements Biglietteria {
         try {
 
 
-            if (Teatro.getSeat(row, column).isSeatAvailable()) {
+            if (Teatro.getInstanceOf().getSeat(row, column).isSeatAvailable()) {
 
-                Teatro.getSeat(row, column).reserveSeat();
+                Teatro.getInstanceOf().getSeat(row, column).reserveSeat();
 
-                Double spesa = Teatro.getSeat(row, column).accept(biglietteriax);
+                Double spesa = Teatro.getInstanceOf().getSeat(row, column).accept(this);
 
                 RegularTicket bigliettoProvvisorio = new RegularTicket(spesa);
                 Ticket bigliettoEmesso = applicaSconto(bigliettoProvvisorio);
 
                 BigliettoGrafica graph = new BigliettoGrafica();
                 graph.setBasics(bigliettoEmesso);
-                graph.setId(Teatro.getSeat(row, column));
+                graph.setId(Teatro.getInstanceOf().getSeat(row, column));
                 graph.setPosto(row, column);
                 graph.setOrario(Teatro.getInstanceOf().getOrarioSpettacoli());
                 graph.setProgrammazione(Teatro.getInstanceOf().getProgrammazioneDellaSettimana());
@@ -58,7 +58,7 @@ public class BiglietteriaOnline implements Biglietteria {
             buy();
         }
     }
-    public static Ticket applicaSconto(Ticket ticket) {
+    public Ticket applicaSconto(Ticket ticket) {
         Ticket newticket = ticket;
         Scanner scanSconto = new Scanner(System.in);
         System.out.println("Puoi applicare Sconto studenti?");

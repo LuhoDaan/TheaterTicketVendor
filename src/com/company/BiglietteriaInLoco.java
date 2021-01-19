@@ -17,7 +17,7 @@ public class BiglietteriaInLoco implements Biglietteria{
 
     //vorrei rendere il metodo non statico però non so come passare poi al suo interno
      //l'istanza della classe che genera buy
-    public static void buy() throws TeatroNotInitialized {
+    public  void buy() throws TeatroNotInitialized {
         //Acquisisco prima i dati dell utente
         Scanner scanRow = new Scanner(System.in);
         System.out.println("Selezionare la fila (0-10) :");
@@ -27,7 +27,6 @@ public class BiglietteriaInLoco implements Biglietteria{
         int column = scanColumn.nextInt();
 
         //procedo all'acquisto vero e proprio
-        BiglietteriaInLoco biglietteriax = new BiglietteriaInLoco(1.25);
         //questo passaggio dove
         // creo un'altra biglietteria non mi torna molto
         //NON SONO TANTO CONVINTO DEL SETTARE QUA DENTRO AL METODO I COSTIOPERATORE;
@@ -35,18 +34,18 @@ public class BiglietteriaInLoco implements Biglietteria{
         try {
 
 
-            if (Teatro.getSeat(row, column).isSeatAvailable()) {
+            if (Teatro.getInstanceOf().getSeat(row, column).isSeatAvailable()) {
 
-                Teatro.getSeat(row, column).reserveSeat();
+                Teatro.getInstanceOf().getSeat(row, column).reserveSeat();
 
-                Double spesa = Teatro.getSeat(row, column).accept(biglietteriax);
+                Double spesa = Teatro.getInstanceOf().getSeat(row, column).accept(this);
 
                 RegularTicket bigliettoProvvisorio = new RegularTicket(spesa);
                 Ticket bigliettoEmesso = applicaSconto(bigliettoProvvisorio);
 
                 BigliettoGrafica graph = new BigliettoGrafica();
                 graph.setBasics(bigliettoEmesso);
-                graph.setId(Teatro.getSeat(row, column));
+                graph.setId(Teatro.getInstanceOf().getSeat(row, column));
                 graph.setPosto(row, column);
                 graph.setOrario(Teatro.getInstanceOf().getOrarioSpettacoli());
                 graph.setProgrammazione(Teatro.getInstanceOf().getProgrammazioneDellaSettimana());
@@ -67,7 +66,7 @@ public class BiglietteriaInLoco implements Biglietteria{
     }
 
 
-    public static Ticket applicaSconto(Ticket ticket) {
+    public Ticket applicaSconto(Ticket ticket) {
         Ticket newticket = ticket;
         Scanner scanSconto = new Scanner(System.in);
         System.out.println("Puoi applicare Sconto studenti?");

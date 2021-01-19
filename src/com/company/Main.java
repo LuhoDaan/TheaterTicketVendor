@@ -22,10 +22,13 @@ public class Main {
             Teatro teatro = Teatro.getInstanceOf();
 
 
+
             teatro.setProgrammazioneDellaSettimana("L'importanza di chiamarsi Ernest");
             teatro.setOrarioSpettacoli("21:30");
-            BiglietteriaOnline.buy();
-            BiglietteriaInLoco.buy();
+            BiglietteriaInLoco biglietteriaInLoco = new BiglietteriaInLoco(1.25);
+            BiglietteriaOnline biglietteriaOnline = new BiglietteriaOnline();
+            biglietteriaInLoco.buy();
+            biglietteriaOnline.buy();
 
         } catch (TeatroNotInitialized e) {
             System.err.println("You have not initialized useful information for Teatro");
