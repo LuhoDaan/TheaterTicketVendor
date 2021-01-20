@@ -3,7 +3,7 @@ package com.company;
 import java.util.Scanner;
 
 public class BiglietteriaInLoco implements Biglietteria{
-    Double costiExtraOperatore ;
+    private Double costiExtraOperatore ;
 
     public BiglietteriaInLoco(Double costiOperatore){
         setCostiExtraOperatore(costiOperatore);

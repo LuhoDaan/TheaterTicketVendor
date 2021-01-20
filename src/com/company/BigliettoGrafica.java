@@ -4,10 +4,10 @@ import java.awt.*;
 
 
 public class BigliettoGrafica {
-    JPanel panel;
-    JFrame biglietto;
-    JLabel basics, id, posto, orario, programmazione;
-    JLabel immagine = new JLabel(new ImageIcon("resources/teatroperg.png"));
+    private JPanel panel;
+    private JFrame biglietto;
+    private JLabel basics, id, posto, orario, programmazione;
+    private JLabel immagine = new JLabel(new ImageIcon("resources/teatroperg.png"));
 
     public BigliettoGrafica() {
         panel = new JPanel();
