@@ -1,4 +1,5 @@
 package com.company;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BiglietteriaOnline implements Biglietteria {
@@ -78,12 +79,18 @@ public class BiglietteriaOnline implements Biglietteria {
         Double price;
         Scanner myObj = new Scanner(System.in);
         System.out.println("Inserire il numero di mesi per i quali si vuole prenotare il palco: ");
+        try{
         int mesi = myObj.nextInt();
         if (mesi < 1) {
             System.out.println("ATTENZIONE PRENOTAZIONE MINIMA 1 MESE");
             price = visit(postoPalco);
         } else {
             price = postoPalco.returnPriceOfTheSeat() * mesi;
+        }
+        }
+        catch (InputMismatchException inp){
+            System.out.println("ATTENZIONE INSERIRE NUMERO VALIDO");
+            price = visit(postoPalco);
         }
         return price;
     }
