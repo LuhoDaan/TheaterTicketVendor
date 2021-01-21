@@ -1,6 +1,5 @@
 package com.company;
 public class Palco implements Seat {
-    private int posizionePosto;
     private Boolean postoNonOccupato = Boolean.TRUE;
     private double prezzo = 120;
 

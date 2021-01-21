@@ -17,7 +17,7 @@ public class BiglietteriaInLoco implements Biglietteria{
 
 
     public  void buy() throws TeatroNotInitialized {
-        //Acquisisco prima i dati dell utente
+
         Scanner scanRow = new Scanner(System.in);
         System.out.println("Selezionare la fila (0-10) :");
         int row = scanRow.nextInt();

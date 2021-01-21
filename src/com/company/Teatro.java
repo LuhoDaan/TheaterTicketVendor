@@ -68,11 +68,6 @@ public class Teatro {
 
 
     private Teatro() {
-        // La classe di solito esprime un concetto astratto
-        // l'oggetto è la realizzazione concreta del concetto.
-        // Anche se qui hai un singleton potresti in futuro cambiare le cose
-        // e espandere l'applicazione a più teatri,
-        // quindi tenere la cosa più astratta possibile può aiutare
 
     }
 
@@ -80,7 +75,6 @@ public class Teatro {
     public static Teatro getInstanceOf() throws TeatroNotInitialized {
         if (instance == null) {
             if (name != null && seats[0].length != 0) {
-                // così va prima impostata per bene la classe e poi restituita l'instance
                 instance = new Teatro();
             } else
                 throw new TeatroNotInitialized(name, seats);
@@ -138,8 +132,7 @@ public class Teatro {
 }
 
 
-// implementazione user-defined Exception,
-// per lanciare eccezioni se non hai settato i dati del teatro prima
+
 class TeatroNotInitialized extends Exception {
     private String name;
     private Seat[][] seats;
