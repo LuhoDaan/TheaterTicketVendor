@@ -55,7 +55,7 @@ public class BiglietteriaInLoco implements Biglietteria{
             }
         }
         catch (ArrayIndexOutOfBoundsException ex){
-            System.out.println("IL POSTO SELEZIONATO NON ESISTE, FARE ATTENZIONE" +
+            System.out.println("IL POSTO SELEZIONATO NON ESISTE, FARE ATTENZIONE " +
                     "A SCEGLIERE UN POSTO COMPRESO TRA FILA 0-11 E SEDIA 0-30");
             buy();
         }
